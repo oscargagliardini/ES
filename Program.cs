@@ -1,4 +1,4 @@
-﻿namespace Esercizi1610
+﻿namespace ES
 {
     internal class Program
     {
@@ -39,8 +39,26 @@
             return p;
 
         }
-        // funzione Conta cifre 
-        static
+        // funzione NUMERO PERFETTO
+
+        static bool NP(int np)
+        {
+            int som=0;
+            for (int i = 2; i != np; i++)
+            {
+                if (np % i == 0)
+                {
+                    som=som + i;
+                }
+            }
+            if(som == np)
+            {
+                return true;
+            }
+            return false;
+        }
+
+       
         static void Main(string[] args)
         {
             // Main MEDIA dispari
@@ -63,11 +81,23 @@
 
             Console.WriteLine("il fattoriale e " + risultato2);
 
-            // main CONTA CIFRE
+            // main NUMERO PERFETTO
 
+            int contatore=0;
 
-
-
+            for (int Y = 2; Y < 50; Y++)
+            {
+                if (NP(Y) == true)
+                {
+                    Console.WriteLine(" il numero  " + np + " e perfetto");
+                    contatore++;
+                }
+                else
+                {
+                    Console.WriteLine("il numero" + np + "non e perfetto");
+                }
+            }
+            Console.WriteLine("i numeri da 1 a 50 sono" + contatore);
         }
     }
 }
