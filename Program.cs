@@ -1,103 +1,79 @@
-﻿namespace ES
+namespace EserciziLista2
 {
     internal class Program
     {
-        //funzione MEDIA DISPARI
-        static double media(int a, int b)
+        static int PicchiDifrequenza(List<int> liste)
         {
-
-            int c = 0;
-            int S = 0;
-            for (int i = a; i < b; i++)
+            int numPiùRipetuto = 0;
+            for(int i = 0; i < liste.Count; i++)
             {
-
-                if (i % 2 == 0)
+                int contatore = 0;
+                for (int j = 0; j < liste.Count; j++)
                 {
-                    S = S + i;
-                    c++;
+                    if (liste[i] == liste[j])
+                    {
+                        contatore++;
+                    }
                 }
-
-
-            }
-            return S / c;
-
-        }
-
-        //funzione FATTORIALE
-        static int Fattoriale(int n)
-        {
-            int p = 1;
-            for (int i = n; i >= 1; i--)
-            {
-                p = p * i;
-
-
-
-            }
-
-
-            return p;
-
-        }
-        // funzione NUMERO PERFETTO
-
-        static bool NP(int np)
-        {
-            int som=0;
-            for (int i = 2; i != np; i++)
-            {
-                if (np % i == 0)
+                if (contatore > numPiùRipetuto)
                 {
-                    som=som + i;
+                    numPiùRipetuto = liste[i];
                 }
             }
-            if(som == np)
-            {
-                return true;
-            }
-            return false;
+            return numPiùRipetuto;
         }
-
-       
+        static List<int> Inversione(List<int> liste, int num)
+        {
+           
+            for (int i = 0; i < num; i++)
+            {
+                int j = 0;
+                j = liste[liste.Count - 1];             
+                
+                liste.RemoveAt(liste.Count - 1);
+                liste.Insert(0, j);
+                
+               
+                    
+            }
+            return liste;
+        }
+        static List<int> IndiceEsplosivo(List<int> lista)
+        {
+            for (int i = lista.Count - 1; i >= 0; i--)
+            {
+                if (lista[i] == i)
+                {
+                    lista.RemoveAt(i);
+                }
+                
+            }
+            
+            return lista;
+        }
         static void Main(string[] args)
         {
-            // Main MEDIA dispari
-
-            Console.WriteLine("dimmi il primo numero dell intervallo ");
-            int n1 = Convert.ToInt32(Console.ReadLine());
-
-            Console.WriteLine("dimmi il primo numero dell intervallo ");
-            int n2 = Convert.ToInt32(Console.ReadLine());
-
-            double risultato = media(n1, n2);
-            Console.WriteLine("la media dell intervallo e " + risultato);
-
-            // main FATTORIALE
-
-            Console.WriteLine("dimmi il  numero ");
-            int n = Convert.ToInt32(Console.ReadLine());
-
-            int risultato2 = Fattoriale(n);
-
-            Console.WriteLine("il fattoriale e " + risultato2);
-
-            // main NUMERO PERFETTO
-
-            int contatore=0;
-
-            for (int Y = 2; Y < 50; Y++)
+            Console.WriteLine("Progetto Liste2 13/04/2026");
+            List<int> lista1 = new List<int>() { 0, 5, 2, 8, 4, 10, 6, 7 };
+            List<int> lista2 = IndiceEsplosivo (lista1);
+            foreach (int i in lista2)
             {
-                if (NP(Y) == true)
-                {
-                    Console.WriteLine(" il numero  " + np + " e perfetto");
-                    contatore++;
-                }
-                else
-                {
-                    Console.WriteLine("il numero" + np + "non e perfetto");
-                }
+                Console.WriteLine(i);
             }
-            Console.WriteLine("i numeri da 1 a 50 sono" + contatore);
+            List<int> listaEs2 = new List<int>() { 1, 2, 3, 4, 5 };
+            Console.WriteLine("inserisci il numero di spostamenti");
+            int n = Convert.ToInt32(Console.ReadLine());
+            List<int> lista3 = Inversione(listaEs2, n);
+            foreach(int j in lista3)
+            {
+                Console.Write(j);
+            }
+            List<int> listaEs3 = new List<int>() { 4, 1, 4, 2, 3, 4, 4, 1, 2, 4, 9 };
+            int numPiùRipetuto = PicchiDifrequenza(listaEs3);
+            Console.WriteLine("Il numero più ripetuto è: " + numPiùRipetuto);
+
+
+
         }
     }
 }
